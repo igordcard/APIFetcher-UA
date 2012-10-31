@@ -4,7 +4,7 @@
         Title="Serviços Académicos da Universidade de Aveiro"
         Height="450" Width="800"
         MinWidth="600" MinHeight="300"
-        Icon="/APIFetcher;component/ua-medium.png"
+        Icon="/APIFetcher;component/Icons/ua-smed.png"
         Loaded="Window_Loaded"
         Closing="Window_Closing">
     <Grid Margin="0" Background="GreenYellow" Name="TheGrid">
@@ -43,6 +43,6 @@
             <TextBlock Visibility="Collapsed" FontSize="16" Text="Estado" HorizontalAlignment="Stretch" Name="StateTitle" Background="GreenYellow" VerticalAlignment="Center" TextAlignment="Center" TextWrapping="Wrap" />
         </Border>
         <TextBlock FontSize="100" Text="A carregar" Grid.ColumnSpan="6" Grid.RowSpan="2" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" Name="Loading" Background="GreenYellow" Foreground="DarkGreen" TextAlignment="Center" TextWrapping="Wrap" />
-        <Image Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="3" Grid.RowSpan="2" Name="UAImage" Stretch="Uniform" VerticalAlignment="Top" Source="ua-medium.png" />
+        <Image Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="3" Grid.RowSpan="2" Name="UAImage" Stretch="Uniform" VerticalAlignment="Top" Source="Icons/ua-medium.png" />
     </Grid>
 </Window>
