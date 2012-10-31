@@ -58,7 +58,8 @@ namespace APIFetcher
             StateTitle.Visibility = Visibility.Visible;
         }
 
-        private TextBlock createFooterText(String name, String text, bool isLink)
+        /* igordcard variable is only to check wether the textblock will be holding the link to igordcard's main source */
+        private TextBlock createFooterText(String name, String text, bool isLink, bool igordcard)
         {
             TextBlock newText = new TextBlock();
             newText.HorizontalAlignment = System.Windows.HorizontalAlignment.Stretch;
@@ -72,7 +73,10 @@ namespace APIFetcher
             {
                 newText.Cursor = Cursors.Hand;
                 newText.Foreground = Brushes.OliveDrab;
-                newText.MouseLeftButtonDown += new MouseButtonEventHandler(Link_MouseLeftButtonDown);
+                if(igordcard)
+                    newText.MouseLeftButtonDown += new MouseButtonEventHandler(Igordcard_MouseLeftButtonDown);
+                else
+                    newText.MouseLeftButtonDown += new MouseButtonEventHandler(Link_MouseLeftButtonDown);
             }
 
             return newText;
@@ -191,7 +195,8 @@ namespace APIFetcher
             RowDefinition statusRow = new RowDefinition();
             statusRow.Height = new GridLength(20, GridUnitType.Pixel);
             TheGrid.RowDefinitions.Add(statusRow);
-            TextBlock updateText = createFooterText("UpdateText", "Última actualização: " + ts.LastUpdate.ToString(), false);
+            TextBlock updateText = createFooterText("UpdateText", "Última actualização: "
+                + ts.LastUpdate.ToString(), false, false);
             updateText.Background = new SolidColorBrush(Color.FromRgb(220,255,150));
             updateText.FontWeight = FontWeights.Bold;
             addToGrid(updateText, line++, 0, 1, 6);
@@ -200,11 +205,11 @@ namespace APIFetcher
             aboutRow.Height = new GridLength(20, GridUnitType.Pixel);
             TheGrid.RowDefinitions.Add(aboutRow);
 
-            TextBlock hyperLink = createFooterText("HyperLink", "igordcard.blogspot.com", true);
+            TextBlock hyperLink = createFooterText("HyperLink", "igordcard.blogspot.com", true, true);
             addToGrid(hyperLink, line, 0, 1, 2);
-            TextBlock versionText = createFooterText("VersionText", version, false);
+            TextBlock versionText = createFooterText("VersionText", version, false, false);
             addToGrid(versionText, line, 2, 1, 2);
-            TextBlock apiLink = createFooterText("ApiLink", "api.web.ua.pt", true);
+            TextBlock apiLink = createFooterText("ApiLink", "api.web.ua.pt", true, false);
             addToGrid(apiLink, line, 4, 1, 2);
         }
 
@@ -262,6 +267,12 @@ namespace APIFetcher
         private void Link_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             System.Diagnostics.Process.Start("http://" + ((TextBlock)sender).Text);
+        }
+
+        private void Igordcard_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            System.Diagnostics.Process.Start
+                ("http://igordcard.blogspot.pt/2012/10/aplicacao-servicos-academicos-da.html?ref=" + version);
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
