@@ -17,7 +17,7 @@ using System.ComponentModel;
 
 namespace APIFetcher
 {
-    public partial class MainWindow : Window
+    public partial class SACUA : Window
     {
         private String version;
 
@@ -25,7 +25,7 @@ namespace APIFetcher
         private DispatcherTimer dt;
         private BackgroundWorker bw;
 
-        public MainWindow()
+        public SACUA()
         {
             InitializeComponent();
         }
